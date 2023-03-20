@@ -1,0 +1,64 @@
+{
+    "left_data": {
+        "type": "csv",
+        "file_path": "clean_voter_data_agg.csv"
+    },
+
+    "right_data": {
+        "type": "db",
+        "db_conn": {
+            "username": "I2B2",
+            "password": "R2x^g5j",
+            "host": "clarityq",
+            "server_sys": "oracle"
+        },
+        "query_path": "right.sql"
+    },
+
+    "matching": {
+        "default_algo": "ratio",
+        "match_dir": "matches_temp",
+        "match_file": "matches.csv",
+        "left_id": "LALVOTERID",
+        "right_id": "PAT_ID",
+        "right_joins": ["DOB", "SEX"],
+        "columns": [
+            {
+                "left_col": "NAME",
+                "right_col": "PAT_NAME",
+                "algo": "token_set_ratio",
+                "acc_avg_weight": 0.67
+            },
+            {
+                "left_col": "ADDRESS",
+                "right_col": "ADDRESS",
+                "algo": "token_set_ratio",
+                "acc_avg_weight": 0.12
+            },
+            {
+                "left_col": "CITY",
+                "right_col": "CITY",
+                "algo": "token_set_ratio",
+                "acc_avg_weight": 0.03
+            },
+            {
+                "left_col": "STATE",
+                "right_col": "STATE",
+                "algo": "token_set_ratio",
+                "acc_avg_weight": 0.03
+            },
+            {
+                "left_col": "ZIP",
+                "right_col": "ZIP",
+                "algo": "token_set_ratio",
+                "acc_avg_weight": 0.03
+            },
+            {
+                "left_col": "PHONE",
+                "right_col": "PHONE_NUMS",
+                "algo": "token_set_ratio",
+                "acc_avg_weight": 0.12
+            }
+        ]
+    }
+}
